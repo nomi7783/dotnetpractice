@@ -1,0 +1,275 @@
+5- MySQL INSERT Multiple Rows
+====================Insert in a single query =========================
+INSERT INTO employee
+  (e_id,e_name,e_salary,e_age,e_gender )
+VALUES
+  (1, 'Noman' , 30000 , 24 , 'Male'), 
+  (2, 'Arman' , 35000 , 28 , 'Male'), 
+  (3, 'Salman' , 40000 , 20 , 'Male'),
+  (4, 'Ayesha' , 45000 , 22 , 'Female'),
+  (5, 'Zainab' , 50000 , 26 , 'Female');
+
+6- MySQL Constraints 
+====================MySQL Constraints  =========================
+CREATE TABLE people(
+	id INT NOT NULL UNIQUE,
+	name VARCHAR(50) NOT NULL,
+	age INT NOT NULL CHECK(age >= 18 ),
+	gender VARCHAR(1) NOT NULL,
+	phone VARCHAR(10) NOT NULL UNIQUE,
+	city VARCHAR(15) NOT NULL DEFAULT 'KARACHI'
+);
+
+
+
+
+INSERT INTO people
+  (id,name,age,gender,phone,city)
+VALUES
+  (3, 'Salman' , 20 , 'M', 03456159398 , 'Sialkot')
+
+
+7- MySQL SELECT With WHERE Clause 
+====================WHERE Clause =========================
+
+select id as ID, name as NAME, phone as "PHONE NUMBER" from people;
+
+select * from people where city != 'KARACHI';
+
+
+8- MySQL AND, OR, NOT Operators
+=============================================
+
+
+
+9- MySQL IN Operator 
+=============================================
+
+select * from employee WHERE e_age IN (20,24) ;
+
+select * from employee WHERE e_age NOT IN (20,24) ;
+
+
+10- MySQL BETWEEN & NOT BETWEEN Operator
+=============================================
+
+select * from employee where e_age BETWEEN 20 AND 30;
+
+select * from employee where e_age NOT BETWEEN 20 AND 30;
+
+select * from employee WHERE e_name BETWEEN 'A' AND 'C';
+
+select * from employee WHERE e_dob BETWEEN '1996-09-04' AND '2021-08-03';
+
+11- MySQL LIKE Operator & Wildcards
+=============================================
+
+select * from employee WHERE e_name LIKE 'A%';
+
+select * from employee WHERE e_name LIKE 'A%' OR e_name LIKE 'N%';
+
+select * from employee WHERE e_name NOT LIKE 'A%';
+
+select * from employee WHERE BINARY e_name LIKE 'A%';
+
+
+12- MySQL Regular Expression 
+=============================================
+select * from employee where e_name LIKE '%[A]';
+
+select * from employee where e_name LIKE '%[AN]';
+
+select * from employee where e_name LIKE '[N][O]%';
+
+
+13- MySQL ORDER BY & DISTINCT
+=============================================
+
+select * from employee ORDER BY e_name; 
+
+select * from employee ORDER BY e_name DESC; 
+
+select * from employee 
+WHERE e_salary>=35000
+ORDER BY e_name DESC; 
+
+
+select DISTINCT e_age from employee ORDER BY e_age DESC; 
+
+
+14- MySQL IS NULL & IS NOT NULL 
+=============================================
+
+SELECT * FROM employee
+WHERE e_age IS NULL;
+
+SELECT * FROM employee
+WHERE e_age IS NOT NULL;
+
+
+15- MySQL TOP , LIMIT & OFFSET ????????????
+=============================================
+
+select TOP 2 * from employee ; 
+
+
+17- MySQL UPDATE
+=============================================
+
+update employee set e_age=30 where e_name='Noman';
+
+18- MySQL COMMIT & ROLLBACK
+=============================================
+
+ROLLBACK/COMMIT:(Use Begin Transaction whenever we use update,insert & delete)
+
+SELECT * FROM employee;
+
+BEGIN TRANSACTION
+
+update employee 
+set e_age=150 
+where e_name='Noman';
+
+COMMIT TRANSACTION;
+
+ROLLBACK TRANSACTION;
+
+20- MySQL PRIMARY KEY & FOREIGN KEY
+=============================================
+
+PRIMARY KEY has always have unique data.
+PRIMARY KEY cannot have null value.
+
+FOREIGN KEY is used to link two tables together.
+FOREIGN KEY in one table used to point PRIMARY KEY on another table.
+
+
+=============================================
+create table studentTable(
+s_id int not null,
+s_name varchar(20) not null,
+s_city int not null,
+primary key(s_id),
+FOREIGN KEY (s_city) REFERENCES cityTable(c_id)
+);
+
+INSERT INTO studentTable
+  (s_id,s_name,s_city)
+VALUES
+  (1, 'Noman', 1), 
+  (2, 'Arman',2), 
+  (3, 'Salman',1),
+  (4, 'Farhan',3),
+  (5, 'Faizan',1)
+
+  select * from studentTable
+=============================================
+
+create table cityTable(
+c_id int not null,
+c_city varchar(20) not null,
+PRIMARY KEY(c_id)
+);
+
+  INSERT INTO cityTable
+  (c_id,c_city)
+VALUES
+  (1,'Karchi'), 
+  (2,'Lahore'), 
+  (3,'Peshawar'),
+  (4,'Islamabad')
+
+  select * from cityTable
+
+=============================================
+
+
+
+
+21- MySQL INNER JOIN  (Can write INNER JOIN or JOIN . Both are correct)(It will show only comman data on both tables)
+=============================================
+
+SELECT * FROM studentTable
+INNER JOIN cityTable
+ON studentTable.s_city = cityTable.c_id;
+
+
+--Can also use alias in our query to make our code short.
+SELECT * FROM studentTable S
+INNER JOIN cityTable C
+ON S.s_city = C.c_id;
+
+
+SELECT s_id,s_name,c_city FROM studentTable S
+INNER JOIN cityTable C
+ON S.s_city = C.c_id;
+
+--Also use WHERE clause & ORDER
+SELECT s_id,s_name,c_city FROM studentTable S
+INNER JOIN cityTable C
+ON S.s_city = C.c_id
+WHERE C.c_city = 'Karchi'
+ORDER BY S.s_name;
+
+
+22- MySQL LEFT JOIN & RIGHT JOIN
+=============================================
+
+
+23- MySQL RIGHT JOIN & RIGHT JOIN
+=============================================
+
+
+24- MySQL CROSS JOIN
+=============================================
+
+--creating new table---
+
+create table coursesTable(
+ct_id int not null,
+ct_courses varchar(20) not null,
+PRIMARY KEY(ct_id)
+);
+
+--updating new table---
+
+INSERT INTO coursesTable
+(ct_id,ct_courses)
+VALUES
+  (1,'WEB'), 
+  (2,'Mobile'), 
+  (3,'Desktop')
+
+
+
+
+
+
+2x- MySQL ALTER
+=============================================
+--ADD new column in a Table
+ALTER TABLE studentTable
+ADD Courses INT;
+
+--UPDATE data in new column in Table
+UPDATE studentTable set Courses = 3 
+WHERE s_id = 1 ;
+
+--changing database name using in-built function
+EXECUTE sp_renamedb 'old_database','new_database';
+
+--changing table name using in-built function
+EXECUTE sp_rename 'old_database','new_database';
+
+-- DELETE column from a Table
+ALTER TABLE studentTable
+DROP COLUMN Courses;
+
+-- Change data type of column from a Table
+ALTER TABLE Employees
+ALTER COLUMN Courses varchar(200);
+
+
+
+
