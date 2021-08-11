@@ -1,0 +1,39 @@
+-- CREATING TABLE
+create table People1  
+(  
+id int,
+name varchar(30),   
+parent_id int
+)
+
+-- INSERTING VALUES INTO THE TABLE
+INSERT INTO People1
+  (id,name,parent_id)
+VALUES
+  (1, 'Bob', 3 ), 
+  (2, 'John', 5 ),
+  (3, 'Larry', 4 ),
+  (4, 'Kevin', 0 ),
+  (5, 'Kyle', 0 ),
+  (6, 'Jason', 5 ),
+  (7, 'Mildred', 4 ),
+  (8, 'Mabel', 6 );
+
+-- SELECTING WHOLE TABLE
+SELECT * FROM People1;
+
+-- SELECTING GRAND PARENTS
+SELECT name FROM People1 WHERE parent_id= 0;
+
+-- SELECTING PARENTS
+SELECT c.name
+FROM People1 p
+JOIN People1 c ON c.parent_id = p.id
+WHERE p.parent_id = 0;
+
+-- SELECTING GRAND PARENTS
+SELECT gc.name
+FROM People1 p
+JOIN People1 c ON c.parent_id = p.id
+JOIN People1 gc ON gc.parent_id = c.id
+WHERE p.parent_id = 0;

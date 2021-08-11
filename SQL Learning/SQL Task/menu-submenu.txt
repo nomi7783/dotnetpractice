@@ -1,0 +1,23 @@
+create table MenuSubmenu  
+(  
+Menu_id int identity(1,1) primary key,  
+Submenu_id int,  
+Menu varchar(30),  
+MenuUrl nvarchar(500)  
+)
+
+
+SET IDENTITY_INSERT MenuSubmenu ON
+INSERT INTO MenuSubmenu
+  (Menu_id,Submenu_id,Menu,MenuUrl )
+VALUES
+  (1, 0 ,'Database','/Database'), 
+  (2, 1 ,'Noman','/Database/Noman'), 
+  (3, 2 ,'Table','/Database/Noman/Table'),
+  (4, 3 ,'Employee','/Database/Noman/Table/Employee'),
+  (5, 4 ,'Columns','/Database/Noman/Table/Employee/Columns'),
+  (6, 5 ,'e_salary','/Database/Noman/Table/Employee/Columns/e_salary');
+
+  select * from MenuSubmenu;
+  
+  select Menu from MenuSubmenu where Submenu_id = 0;
