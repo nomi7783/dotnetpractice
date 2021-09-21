@@ -154,6 +154,7 @@ selecing most recent added employee
 =====GROUP BY=====(IS USED TO AGGREGRATE RESULT WITH RESPECT TO A GROUP )
 
 selecting male average age and female average age seprately..
+
 1- select avg(e_age),e_gender from employee group by e_gender;
 2- select avg(e_age),e_gender from employee group by e_gender order by avg(e_age) DESC;
 
@@ -164,6 +165,7 @@ selecting male average age and female average age seprately..
 =====HAVING CLAUSE=====(USED IN COMBINATION WITH GROUP BY TO IMPOSE CONDITIONS ON GROUP )
 
 SELECTION OF ONLY THOSE DEPARTEMENT THAT HAS AVERAGE SALARY OF MORE THAN 60000.. 
+
 select avg(e_salary),e_dept 
 from employeedata 
 group by e_dept

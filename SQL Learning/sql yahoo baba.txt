@@ -242,6 +242,57 @@ VALUES
   (3,'Desktop')
 
 
+-----------------------
+SELECT * FROM studentTable;
+SELECT * FROM cityTable;
+SELECT * FROM coursesTable;
+
+SELECT studentTable.s_id, studentTable.s_name , cityTable.c_city , coursesTable.ct_courses FROM studentTable
+INNER JOIN cityTable
+ON studentTable.s_city = cityTable.c_id
+INNER JOIN coursesTable
+ON studentTable.Courses = coursesTable.ct_id;
+
+
+25- MySQL GROUP BY & HAVING Clause
+=============================================
+
+SELECT c.c_city as Name , count(P.s_city) as TOTAL
+FROM studentTable P
+INNER JOIN cityTable c
+ON P.s_city = c.c_id
+GROUP BY c_city
+HAVING count(P.s_city)>1;
+
+
+26- MySQL SubQuery with EXISTS & NOT EXISTS
+=============================================
+
+-------------
+SELECT * FROM studentTable
+WHERE Courses =
+(SELECT ct_id from coursesTable WHERE ct_courses= 'WEB');
+
+SELECT * FROM studentTable
+WHERE Courses IN
+(SELECT ct_id from coursesTable WHERE ct_courses= 'WEB');
+
+
+
+
+27- MySQL UNION & UNION ALL
+=============================================
+
+
+28- MySQL IF & CASE Statement 
+=============================================
+
+IIF:
+---
+select s_name , Courses,
+iif(Courses=1, 'Equal to 1' , 'Greater than 1') as result from studenttable;
+
+
 
 
 

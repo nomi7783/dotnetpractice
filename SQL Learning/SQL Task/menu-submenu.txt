@@ -18,6 +18,19 @@ VALUES
   (5, 4 ,'Columns','/Database/Noman/Table/Employee/Columns'),
   (6, 5 ,'e_salary','/Database/Noman/Table/Employee/Columns/e_salary');
 
-  select * from MenuSubmenu;
+
   
-  select Menu from MenuSubmenu where Submenu_id = 0;
+select Menu from MenuSubmenu where Submenu_id = 0;
+
+
+select * from MenuSubmenu;
+
+-- SELECTING MOST GRAND CHILD
+SELECT gc.Menu
+FROM MenuSubmenu p
+JOIN MenuSubmenu c ON c.Submenu_id = p.Menu_id
+JOIN MenuSubmenu gc1 ON gc1.Submenu_id = c.Menu_id
+JOIN MenuSubmenu gc2 ON gc2.Submenu_id = gc1.Menu_id
+JOIN MenuSubmenu gc3 ON gc3.Submenu_id = gc2.Menu_id
+JOIN MenuSubmenu gc ON gc.Submenu_id = gc3.Menu_id
+WHERE p.Submenu_id = 0;

@@ -1,0 +1,61 @@
+======================================================================
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'; 
+
+
+const book1 ={
+  name: 'Name-1',
+  details: 'Detail-1',
+  paraDetail:'paragraph-1'
+}
+
+const book2 ={
+  name: 'Name-2',
+  details: 'Detail-2',
+  paraDetail:'paragraph-2'
+}
+
+const book3 ={
+  name: 'Name-3',
+  details: 'Detail-3',
+  paraDetail:'paragraph-3'
+}
+
+function Book(){
+  return(
+    <>
+    <BookData name={book1.name} details={book1.details} paraDetail={book1.paraDetail}/>
+    <BookData name={book2.name} details={book2.details} paraDetail={book2.paraDetail}/>
+    <BookData name={book3.name} details={book3.details} paraDetail={book3.paraDetail}/>    
+    </>
+  );
+}
+
+function BookData(props){
+  console.log(props);
+  // const name= "Roshan Digital Account";
+  // const details= "this is const";
+  // const paraDetail = " With a customer base of over 10 million customers — UBL is at the forefront of the banking and financial services sector in Pakistan.";
+ const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
+  return(
+    <>
+     <img src={imgSource} alt=""/>
+     <h1>{props.name}</h1>
+     <h6>{props.details}</h6>
+     <p>{props.paraDetail}</p>
+    </>
+  );
+}
+
+
+
+ReactDOM.render(
+ <Book/> ,
+  document.getElementById('root')
+);
+
+
+
+====================================================================================================
