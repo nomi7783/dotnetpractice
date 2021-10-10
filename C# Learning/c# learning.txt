@@ -1,0 +1,365 @@
+===============Part 2 - C# Tutorial - Reading and writing to a console===================
+
+using System;
+
+    class Program
+    {
+        static void Main()
+        {
+        Console.Write("Enter Your Name\n");
+        string userName =  Console.ReadLine();
+
+        Console.Write("Enter Your Last Name\n");
+        string lastName = Console.ReadLine();
+        Console.WriteLine("Your Name is {0}. Your last name is {1}", userName , lastName);
+    }
+
+
+}
+=========================================================================================
+
+
+
+
+
+===============Part 4 - C# Tutorial - String type in c#===================
+using System;
+    class Program
+    {
+        static void Main()
+        {
+        string name = "C:\\Users\\Noman\\Desktop\\git-repository";
+        Console.WriteLine(name);
+    }
+}
+
+-----verbatim literal----
+string name = @"C:\Users\Noman\Desktop\git-repository";
+=========================================================================================
+
+
+
+
+===============Part 5 - C# Tutorial - Common Operators in c#===================
+-------Ternary Operator
+
+using System;
+
+    class Program
+    {
+        static void Main()
+        {
+        int number = 10;
+        bool number10 = number == 10 ? true: false ;
+        Console.WriteLine("Number is 10 is {0}", number10);
+    }
+}
+=========================================================================================
+
+
+
+===============Part 6 - C# Tutorial - Nullable Types===================
+-----------------Program without using NULL coalescing operator
+using System;
+class Program
+{
+    static void Main()
+    {
+        int AvailableTickets;
+        int? TicketsOnSale = null;
+
+        if (TicketsOnSale == null)
+        {
+            AvailableTickets = 0;
+        }
+        else
+        {
+            AvailableTickets = (int)TicketsOnSale;
+        }
+
+        Console.WriteLine("Available Tickets={0}", AvailableTickets);
+    }
+}
+
+--------------------The above program is re-written using NULL coalescing operator
+using System;
+class Program
+{
+    static void Main()
+    {
+        int AvailableTickets;
+        int? TicketsOnSale = null;
+
+        //Using null coalesce operator ??
+        AvailableTickets = TicketsOnSale ?? 0;
+
+        Console.WriteLine("Available Tickets={0}", AvailableTickets);
+    }
+}
+=========================================================================================
+
+
+===============Part 7 C# Tutorial Datatypes conversion===================
+
+typecasting -- (int) floatNumber; -------  it can not give any exception.
+convert class -- Convert.toInt32(floatNumber); -------  it can give an exception.
+
+
+Difference between Parse and TryParse
+1. If the number is in a string format you have 2 options - Parse() and TryParse() 
+2. Parse() method throws an exception if it cannot parse the value, whereas TryParse() returns a bool indicating whether it succeeded or failed.
+3. Use Parse() if you are sure the value will be valid, otherwise use TryParse()
+
+----------------------------------
+
+namespace tryparse
+{
+class Program
+{
+static void Main(string[] args)
+{
+string value = "200t";
+int r=0;
+bool enternumber = int.TryParse(value, out r);
+
+if (enternumber)
+{
+
+Console.WriteLine( r);
+}
+else
+{
+Console.WriteLine("please enter the correct number " + r);
+}
+Console.ReadKey();  //it is use halt a program until a users presses any key
+}
+
+}
+}
+
+
+=========================================================================================
+
+
+==============Part 12 - C# Tutorial - switch statement in c# continued=================
+
+using System;
+class Program
+{
+    static void Main()
+    {
+        int totalCost = 0;
+    Start:
+        Console.WriteLine("please select your Fruit.\n 1-ORANGE \n 2- Mango \n 3- Banana");
+        int selectedFruit = int.Parse(Console.ReadLine());
+        switch (selectedFruit)
+        {
+            case 1:
+                totalCost += 1;
+                break;
+
+            case 2:
+                totalCost += 2;
+                break;
+
+            case 3:
+                totalCost += 3;
+                break;
+
+            default:
+                Console.WriteLine("Please select valid fruit to buy");
+                break;
+        }
+
+        Decide:
+        Console.WriteLine("Do you want to buy another Fruit?");
+        Console.WriteLine("YES");
+        Console.WriteLine("NO");
+
+        string userDecision = Console.ReadLine();
+
+        switch (userDecision.ToUpper())
+        {
+            case "YES":
+            goto Start;
+
+            case "NO":
+            break;
+
+            default:
+                Console.WriteLine("Your choice is Invalid");
+                goto Decide;
+        }
+
+
+
+
+        Console.WriteLine("Thankyou for shopping with us");
+        Console.WriteLine("Total cost of fruit is {0}", totalCost);
+
+    }
+}
+
+=========================================================================================
+
+
+
+
+==================Part 14 - C# Tutorial - do while loop in c#====================
+
+using System;
+class Program
+{
+    static void Main()
+    {
+        string userDecision = "";
+        bool enternumber;
+        do {
+
+            do {
+                Console.WriteLine("Enter your target No");
+                string value = Console.ReadLine();
+                int targetnum = 0;
+                enternumber = int.TryParse(value, out targetnum);
+
+                if (enternumber)
+                {
+                    int i = 0;
+                    while (i <= targetnum)
+                    {
+                        Console.WriteLine(i);
+                        i = i + 2;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("PLease enter correct Number");
+                }
+            } while (!enternumber);
+
+            do
+            {
+                Console.WriteLine("Do you want to continue?");
+                Console.WriteLine("YES or NO");
+                userDecision = Console.ReadLine().ToUpper();
+
+                if (userDecision != "YES" && userDecision != "NO")
+                {
+                    Console.WriteLine("Your selection is invalid");
+                }
+
+            } while (userDecision != "YES" && userDecision != "NO");
+
+        } while (userDecision == "YES");
+
+    }
+}
+
+=========================================================================================
+
+==================Part 16 - C# Tutorial - Methods in c#====================
+
+----------------------------For invoke an Instance method we have to create an Instance of a Class 
+using System;
+class Program
+{
+    static void Main()
+    {
+        Program p = new Program();
+        p.evenNumber();
+    }
+
+    public void evenNumber()
+    {
+        Console.WriteLine("this is even number function");
+    }
+}
+
+----------------------------For invoke an Static method we dont have to create an Instance of a Class
+using System;
+class Program
+{
+    static void Main()
+    {
+      
+        Program.evenNumber();
+    }
+
+    public static void evenNumber()
+    {
+        Console.WriteLine("this is even number function");
+    }
+}
+
+
+=========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================================
+================================ashar-bhai-code===================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee emp1 = new Employee(1,"Ashar");
+            Console.WriteLine(emp1.Name);
+            Employee emp2 = new Employee();
+            emp2.id = 1;
+            emp2.Name = "Noman";
+            Console.WriteLine(emp2.Name);
+        }
+    }
+    public class Employee
+    {
+        public int id { get; set; }
+        public int salary { get; set; }
+        public string Name { get; set; }
+        public string Department { get; set; }
+        public Employee()
+        {
+        }
+        public Employee(int _id)
+        {
+            id = _id;
+        }
+        public Employee(int _salary,string _name)
+        {
+            salary = _salary;
+            Name = _name;
+        }
+        public Employee(int _id, int _salary)
+        {
+            id = _id;
+            salary = _salary;
+        }
+        public Employee(int _id, string _name,string _department)
+        {
+            id = _id;
+            Name = _name;
+            Department = _department;
+        }
+    }
+}

@@ -1,0 +1,789 @@
+IMPORTANT LINKS: https://api.jquery.com/category/selectors/
+
+===========================check-box-jquery-start===========================
+----------HTML
+
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> box number 1</label><br>
+
+  
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2">box number 2</label><br>
+
+
+  
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> box number 3</label><br>
+
+
+
+
+  <p id="box1">1st check box</p>
+  <p id="box2">2nd check box</p>
+  <p id="box3">3rd check box</p>
+
+
+----------JQuery
+
+
+    $(document).ready(function(){
+
+      $('#vehicle1').change(function() {
+        var obj = $(this);
+        var div= $('#box1');
+        if (obj.is(':checked')){
+          div.css("display", "block");
+        }
+        else{
+          div.css("display", "none");
+        }
+      });
+
+
+      $('#vehicle2').change(function() {
+        var obj = $(this);
+        var div= $('#box2');
+        if (obj.is(':checked')){
+          div.css("display", "block");
+        }
+        else{
+          div.css("display", "none");
+        }
+      });
+
+
+      $('#vehicle3').change(function() {
+        var obj = $(this);
+        var div= $('#box3');
+        if (obj.is(':checked')){
+          div.css("display", "block");
+        }
+        else{
+          div.css("display", "none");
+        }
+      });
+});
+
+
+===========================check-box-jquery-End=============================
+
+
+
+==========================================================================
+
+------HTML
+<img src="./img/ubl-logo.jpg" id="img1" alt="">
+<div id="div1"></div>
+
+------JQuery
+    $(document).ready(function(){
+      $('#div1').html("Height"+ $('#img1').height() + "<br/>" + "Width" + $('#img1').width() );
+});
+
+==========================================================================
+
+====================================jQuery #id selector===================
+
+------HTML
+<div id="div1"></div>
+
+------JQuery
+    $(document).ready(function(){
+      if($("#div1").length>0){
+        alert("Item found");
+      } 
+      else{
+        alert("Item not found");
+      }
+});
+
+==========================================================================
+
+
+====================================jQuery Element Selector===================
+
+------JQuery
+    $(document).ready(function(){
+
+      // ---
+      $('tr:even').css('background-color','grey');
+      $('tr:odd').css('background-color','blue');
+
+      // ---
+      // $('table tr').each(function(){
+      //   alert($(this).html()); 
+      // });
+
+      // ---
+      // alert($("div").html());
+      
+      // ---
+      // alert($("h1").length());
+      
+      // ---
+      // $('div h1').css({ "background-color": "yellow", "color":"red" , "border": "2px solid black" }) ;
+});
+
+
+==========================================================================
+
+
+
+
+====================================jQuery class selector===================
+
+------HTML
+<p class="big">this is p</p>
+  <h1 class="big">this is h1</h1>
+  <h2 class="big">this is h2</h2>
+  <h3 class="big small">this is small big</h3>
+
+
+------JQuery
+   $(document).ready(function(){
+      $('p.big').css("border","2px solid red");
+      $('h1.big').css("border","2px solid blue");
+      $('h2.big').css("border","2px solid green");
+      $('.big.small').css("border","2px solid purple");
+    });
+
+==========================================================================
+
+
+
+
+
+====================================jQuery attribute selector=============
+
+------HTML
+  <div title="title1">
+    this is title 1
+  </div>
+  <h1 title="title2">
+    this is title 2
+  </h1>
+  <p title="title3">
+    this is title 3
+  </p>
+  <div title="fourth" style="background-color: yellow">
+    this is title 4
+  </div>
+
+  <div title="fourth" style="background-color: green">
+    this is title 5
+  </div>
+
+------JQuery
+   $(document).ready(function(){
+      $('p[title]').css("border","2px solid red");
+      $('[title="title3"]').css("border","2px solid blue");
+      $('div[title="title1"]').css("border","2px solid green");
+      // $('div[title="fourth"][style]').css("border","2px solid red");
+      $('div[title="fourth"][style="background-color: green"]').css("border","2px solid red");
+    });
+
+
+==========================================================================
+
+
+====================================jQuery INPUT VS INPUT===============
+
+------HTML
+
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" value="Noman"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" value="Khan"><br>
+
+  <input type="radio" id="html" name="fav_language" value="HTML">
+  <label for="html">HTML</label><br>
+  <input type="radio" id="css" name="fav_language" value="CSS">
+  <label for="css">CSS</label><br>
+  <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+  <label for="javascript">JavaScript</label> <br>
+
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label> <br>
+
+
+  <label for="cars">Choose a car:</label>
+
+<select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+<br>
+
+
+<textarea name="textarea" id="" cols="30" rows="10">I am learning jquery</textarea>
+
+
+----- JQuery
+
+ $(document).ready(function(){
+      $(':input[type="text"]').each(function(){
+       alert($(this).val());
+      });
+
+      $('input').each(function(){
+       alert($(this).val());
+      });
+
+      $(':input').each(function(){
+       alert($(this).val());
+      });
+    });
+
+==========================================================================
+
+
+
+=======================jQuery checked selector=========================
+--Radio
+------HTML
+  <input type="radio" id="html" name="fav_language" value="Male">
+  <label for="html">Male</label><br>
+  <input type="radio" id="css" name="fav_language" value="Female">
+  <label for="css">Female</label><br>
+  <input type="submit" id="btnsubmit" value="Submit">
+<div id="result"></div>
+
+----- JQuery
+ $(document).ready(function(){
+      $('#btnsubmit').click(function(){
+       var result = $('input[type="radio"]:checked');
+
+       if(result.length>0){
+         $('#result').html(result.val() +" " +"is checked");
+       }
+       else{
+        $('#result').html("Nothing is checked");
+       }
+      });
+    });
+
+
+--Checkbox
+------HTML
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br>
+  <input type="submit" id="btnsubmit" value="Submit">
+<div id="result"></div>
+
+
+----- JQuery
+    $(document).ready(function(){
+      $('#btnsubmit').click(function(){
+       var result = $('input[type="checkbox"]:checked');
+
+       if(result.length>0){
+         var resultstring = result.length + "is checked <br/>";
+
+         result.each(function(){
+          resultstring += $(this).val() + "<br/>";
+         });
+
+         $('#result').html(resultstring);
+       }
+       else{
+        $('#result').html("Nothing is checked");
+       }
+      });
+    });
+
+==========================================================================
+
+
+=========Select values of checkbox group with jquery==================
+------HTML
+ <input type="checkbox" id="vehicle1" class="vehicleGroup" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" class="vehicleGroup" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" class="vehicleGroup" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br>
+
+
+  <input type="checkbox" id="html" class="programmingGroup" name="vehicle1" value="html">
+  <label for="html"> html</label><br>
+  <input type="checkbox" id="css" class="programmingGroup" name="vehicle2" value="css">
+  <label for="css"> css</label><br>
+  <input type="checkbox" id="javascript" class="programmingGroup" name="vehicle3" value="javascript">
+  <label for="javascript"> javascript</label><br>
+
+  
+  
+  <input type="submit" id="btnsubmitV" value="select vehicle">
+  <input type="submit" id="btnsubmitP" value="select programming">
+<div id="resultV"></div>
+
+<div id="resultP"></div>
+
+
+----- JQuery
+
+// Vehicle group selector 
+      $('#btnsubmitV').click(function(){
+       var result = $('input[type="checkbox"][class="vehicleGroup"]:checked');
+
+       if(result.length>0){
+         var resultstring = result.length +" " + "Vehicle is checked <br/>";
+
+         result.each(function(){
+          resultstring += $(this).val() + "<br/>";
+         });
+
+         $('#resultV').html(resultstring);
+       }
+       else{
+        $('#resultV').html("Nothing is checked");
+       }
+      });
+
+// Programming group selector 
+      $('#btnsubmitP').click(function(){
+       var result = $('input[type="checkbox"][class="programmingGroup"]:checked');
+
+       if(result.length>0){
+         var resultstring = result.length  +" "+ "Programming is checked <br/>";
+
+         result.each(function(){
+          resultstring += $(this).val() + "<br/>";
+         });
+
+         $('#resultP').html(resultstring);
+       }
+       else{
+        $('#resultP').html("Nothing is checked");
+       }
+      });
+
+
+
+==========================================================================
+
+
+
+==========================jQuery get selected checkbox text============
+
+----HTML
+
+  <input type="checkbox"  class="vehicleGroup" name="Bike" value="Bike">
+  <label for="Bike"> I have a bike</label><br>
+  <input type="checkbox"  class="vehicleGroup" name="Car" value="Car">
+  <label for="Car"> I have a car</label><br>
+  <input type="checkbox"  class="vehicleGroup" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br>
+
+
+  <input type="checkbox" class="programmingGroup" name="html" value="html">
+  <label for="html"> html</label><br>
+  <input type="checkbox"class="programmingGroup" name="css" value="css">
+  <label for="css"> css</label><br>
+  <input type="checkbox" class="programmingGroup" name="javascript" value="javascript">
+  <label for="javascript"> javascript</label><br>
+
+  
+  
+  <input type="submit" id="btnsubmitV" value="select vehicle">
+  <input type="submit" id="btnsubmitP" value="select programming">
+<div id="resultV"></div>
+
+<div id="resultP"></div>
+
+
+----JQuery
+
+ $(document).ready(function(){
+
+// Vehicle group selector 
+      $('#btnsubmitV').click(function(){
+       var result = $('input[type="checkbox"][class="vehicleGroup"]:checked');
+
+       if(result.length>0){
+         var resultstring = result.length +" " + "Vehicle is checked <br/>";
+
+         result.each(function(){
+          var selectedValue = $(this).val(); 
+          resultstring += selectedValue + "-" + $("label[for='" + selectedValue + "']").text()  + "<br/>";
+         });
+
+         $('#resultV').html(resultstring);
+       }
+       else{
+        $('#resultV').html("Nothing is checked");
+       }
+      });
+
+// Programming group selector 
+      $('#btnsubmitP').click(function(){
+       var result = $('input[type="checkbox"][class="programmingGroup"]:checked');
+
+       if(result.length>0){
+         var resultstring = result.length  +" "+ "Programming is checked <br/>";
+
+         result.each(function(){
+          var selectedValue = $(this).val(); 
+          resultstring += selectedValue + "-" + $("label[for='" + selectedValue + "']").text()  + "<br/>";
+         });
+
+         $('#resultP').html(resultstring);
+       }
+       else{
+        $('#resultP').html("Nothing is checked");
+       }
+      });
+
+
+==========================================================================
+
+
+======================jQuery selected selector====================
+
+------HTML
+
+  <!-- Single select dropdown -->
+  CARS:
+  <select id="cars">
+    <option value="volvo">Car Volvo</option>
+    <option value="saab">Car Saab</option>
+    <option value="vw">Car VW</option>
+    <option value="audi" >Car Audi</option>
+  </select>
+  <br><br>
+
+    <!-- Single select dropdown -->
+    Bike:
+    <select id="bikes" multiple="multiple">
+      <option value="volvo">Bike Volvo</option>
+      <option value="saab">Bike Saab</option>
+      <option value="vw">Bike VW</option>
+      <option value="audi" >Bike Audi</option>
+      <option value="volvo">Bike Volvo</option>
+      <option value="saab">Bike Saab</option>
+      <option value="vw">Bike VW</option>
+      <option value="audi" >Bike Audi</option>
+    </select>
+
+
+  <div id="resultS"></div>
+  <div id="resultM"></div>
+
+
+-----JQuery
+  $(document).ready(function(){
+      // Single select dropdown
+      $("#cars").change(function(){
+       var selectedOption = $("#cars option:selected");
+       $('#resultS').html("value =" + selectedOption.val() + "Text=" + selectedOption.text());
+      });
+
+
+      // Multiple select dropdown
+      $("#bikes").change(function(){
+       var selectedOptions = $("#bikes option:selected");
+       if(selectedOptions.length>0){
+          var stringresult = "";
+          selectedOptions.each(function(){
+            stringresult += "value =" + $(this).val() + "Text=" + $(this).text() + "<br/>";
+          });
+       }
+       $('#resultM').html(stringresult);
+      });
+    });
+
+
+
+==========================================================================
+
+
+
+
+======================jQuery disabled/enabled selector====================
+
+-----HTML
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" disabled="disabled"><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" disabled="disabled">
+  <br>
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name">
+
+  <br>
+  <textarea name="hello" value="hello world" disabled="disabled" id="" cols="30" rows="10"></textarea>
+  <br><br>
+  <input type="submit" value="submit" disabled="disabled">
+
+
+----Jquery
+$(document).ready(function(){
+      // $("input:disabled").css("border","1px solid red");
+      // $("input[type='text']:disabled").css("border","1px solid red");
+      // $("input[type='submit']:disabled").css("border","1px solid red");
+      $("input:enabled").css("border","1px solid red");
+    });
+==========================================================================
+
+
+=======================Convert JSON object to string===============================
+
+----HTML
+  <ul id="listOfItems">
+    <li>p1</li>
+    <li>p2</li>
+    <li>p3</li>
+    <li>p4</li>
+    <li>p5</li>
+  </ul>
+  <div id="box"></div>
+
+
+
+----JQuery
+    $(document).ready(function(){
+        var resultString = "";
+      $('li').each(function(index,element){
+         resultString +=  "INDEX = " + $(this).index() + " <br/>" +  "VALUE =" + $(this).text() + " <br/>" ; 
+        //  alert(resultString); 
+      });
+
+      $('#box').html(resultString);
+
+    });
+
+
+==========================================================================
+
+
+
+=======================jQuery each function===============================
+
+----HTML
+    <input type="submit" class="btnsubmit" value="click me">
+  <div id="Dev1"></div>
+  <div id="Dev2"></div>
+
+----JQuery
+ $(document).ready(function(){
+        var employeeJSON =[
+        {
+          firstName: "Noman",
+          lastName: "Khan",
+          Age:'24',
+          Job: 'Front End Developer'
+        },
+        {
+          firstName: "Salman",
+          lastName: "Khan",
+          Age:'21',
+          Job: 'Flutter Developer'
+        }
+        ]
+
+        var result1= "";
+        result1 += "FIRST NAME :" + employeeJSON[0].firstName  + "<br/>";
+        result1 += "Last NAME :" + employeeJSON[0].lastName  + "<br/>";
+        result1 += "AGE :" + employeeJSON[0].Age  + "<br/>";
+        result1 += "Job :" + employeeJSON[0].Job  + "<br/><br/><br/>"; 
+        // console.log(result);
+
+
+        var result2= "";
+        result2 += "FIRST NAME :" + employeeJSON[1].firstName  + "<br/>";
+        result2 += "Last NAME :" + employeeJSON[1].lastName  + "<br/>";
+        result2 += "AGE :" + employeeJSON[1].Age  + "<br/>";
+        result2 += "Job :" + employeeJSON[1].Job  + "<br/>"; 
+
+        $('.btnsubmit').click(function(){
+            $('#Dev1').html(result1);
+            $('#Dev2').html(result2);
+        });
+    });
+
+
+==========================================================================
+
+
+=======================Convert JSON object to string========================
+
+convert JSON to string:
+
+-----HTML
+<div id="result"></div>
+
+-----JQuery
+ $(document).ready(function(){
+        var employeeJSON =[
+        {
+          firstName: "Noman",
+          lastName: "Khan",
+          Age:'24',
+          Job: 'Front End Developer'
+        },
+        {
+          firstName: "Salman",
+          lastName: "Khan",
+          Age:'21',
+          Job: 'Flutter Developer'
+        }
+        ]
+
+        var result = JSON.stringify(employeeJSON);
+        $("#result").html(result);
+
+});
+
+
+
+convert String to JSON:
+
+-----HTML
+<div id="box"></div>
+
+-----JQuery
+    $(document).ready(function(){
+      var jsonString = '[{"firstName":"Noman","lastName":"Khan","Age":"24","Job":"Front End Developer"},{"firstName":"Salman","lastName":"Khan","Age":"21","Job":"Flutter Developer"}]';
+       
+        var employeeJson = JSON.parse(jsonString); 
+        var result="";
+        $.each(employeeJson,function(i ,item){  
+          result += "First Name :" +  item.firstName + "<br/>";
+          result += "lastName :" +  item.lastName + "<br/>";
+          result += "Age :" +  item.Age + "<br/><br/>"; 
+        }); 
+        $("#box").html(result);
+});
+
+
+
+==========================================================================
+
+
+========================jQuery wrap elements==============================
+wrap,unwrap,wrapall,wrapinner
+
+-----HTML
+  <div class="child-div">
+    <h1>This is Heading 1</h1>
+    <h2>This is Heading 2</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur tempore dolores cumque ullam fuga atque.</p>
+  </div>
+
+  <div class="child-div">
+    <h1>This is Heading 1</h1>
+    <h2>This is Heading 2</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur tempore dolores cumque ullam fuga atque.</p>
+  </div>
+  
+
+  <button class="btn-wrap">Wrap parent class</button>
+  <button class="btn-unwrap">UN-wrap parent class</button>
+
+-----JQuery
+    $(document).ready(function(){
+      $(".btn-wrap").click(function(){
+        $('.child-div').wrap("<div class='main-Container'></div>");
+      });
+
+      $(".btn-unwrap").click(function(){
+        $('.child-div').unwrap();
+      });
+    });
+
+
+==========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================================================================
+============================Radio button task=============================
+
+--HTML
+ <input type="checkbox" id="vehicle1" name="vehicle1" class="sad">
+
+  <input type="checkbox" id="vehicle2" name="vehicle2" class="sad">
+
+  <input type="checkbox" id="vehicle3" name="vehicle3" class="sad">
+
+  <input type="checkbox" id="vehicle4" name="vehicle4" class="sad" >
+
+  <input type="checkbox" id="vehicle5" name="vehicle5" class="sad" >
+
+  <input type="checkbox" id="vehicle6" name="vehicle6" class="sad" >
+
+  <!-- <input type="submit" id="btnsubmit" value="Submit"> -->
+<div id="result"></div>
+
+--JQuery
+    $(document).ready(function(){
+      $('.sad').change(function(){
+      
+        var obj = $(this);
+
+      var length = $('.sad:checked').length;
+     if(length > 3){
+        if(obj.is(":checked")){
+          obj.prop("checked",false);
+        }
+      }
+      });
+    });
+
+==========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

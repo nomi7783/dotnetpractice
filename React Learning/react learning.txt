@@ -59,3 +59,387 @@ ReactDOM.render(
 
 
 ====================================================================================================
+===========props,children, destructuring 
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'; 
+
+
+
+const book1 ={
+  name: 'Name-1',
+  details: 'Detail-1',
+  paraDetail:'paragraph-1'
+}
+
+const book2 ={
+  name: 'Name-2',
+  details: 'Detail-2',
+  paraDetail:'paragraph-2'
+}
+
+const book3 ={
+  name: 'Name-3',
+  details: 'Detail-3',
+  paraDetail:'paragraph-3'
+}
+
+function Book(){
+  return(
+    <>
+    <BookData name={book1.name} details={book1.details} paraDetail={book1.paraDetail} >
+      <p>THIS IS CHIDREN 1</p>
+    </BookData>
+    <BookData name={book2.name} details={book2.details} paraDetail={book2.paraDetail}>
+      <p>THIS IS CHIDREN 2
+        <br/>
+        <span> hello</span>
+      </p>
+      </BookData>
+    <BookData name={book3.name} details={book3.details} paraDetail={book3.paraDetail}>
+      <p>THIS IS CHIDREN 3</p>
+      </BookData>    
+    </>
+  );
+}
+
+function BookData({name,details,paraDetail,children}){
+ const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
+ //  props destructuring
+  // let {name,details,paraDetail} = props;
+  return(
+    <>
+     <img src={imgSource} alt=""/>
+     <h1>{name}</h1>
+     <h6>{details}</h6>
+     <p>{paraDetail}</p>
+     {children}
+    </>
+  );
+}
+
+
+
+ReactDOM.render(
+  <Book/> ,
+   document.getElementById('root')
+ );
+ 
+ 
+====================================================================================================
+13. Simple List ============use map function on array of string and then bind in an html Tag
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'; 
+
+const books = [
+{
+  name: 'Name-1',
+  details: 'Detail-1',
+  paraDetail:'paragraph-1'
+},
+
+{
+  name: 'Name-2',
+  details: 'Detail-2',
+  paraDetail:'paragraph-2'
+},
+
+{
+  name: 'Name-3',
+  details: 'Detail-3',
+  paraDetail:'paragraph-3'
+}
+]
+
+const name =['noman' , 'salman' ,'arman'];
+const newName = name.map((name)=>{
+  return(
+    <h1>{name}</h1>
+  );
+});
+
+function Book(){
+  return(
+    <>
+  {newName}
+    </>
+  );
+}
+
+function BookData({name,details,paraDetail}){
+ const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
+ //  props destructuring
+  // let {name,details,paraDetail} = props;
+  return(
+    <>
+    
+     <img src={imgSource} alt=""/>
+     <h1>{name}</h1>
+     <h6>{details}</h6>
+     <p>{paraDetail}</p>
+    
+    </>
+  );
+}
+
+
+
+ReactDOM.render(
+  <Book/> ,
+   document.getElementById('root')
+ );
+ 
+====================================================================================================
+
+
+====================================================================================================
+14. Simple List ============use map function on array of object and then bind in an html Tag
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'; 
+
+const books = [
+{
+  name: 'Name-1',
+  details: 'Detail-1',
+  paraDetail:'paragraph-1'
+},
+
+{
+  name: 'Name-2',
+  details: 'Detail-2',
+  paraDetail:'paragraph-2'
+},
+
+{
+  name: 'Name-3',
+  details: 'Detail-3',
+  paraDetail:'paragraph-3'
+}
+]
+
+
+
+function Book(){
+  return(
+    <>
+    {books.map((book)=>{
+     let {name,details,paraDetail} = book;
+      return(
+        <>
+        {/* <BookData name={name} details={details} paraDetail={paraDetail}/> */}
+
+        
+        <BookData name={name} details={details} paraDetail={paraDetail}/>
+
+        </>
+      );
+    })
+    }
+    </>
+  );
+}
+
+function BookData({name,details,paraDetail}){
+ const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
+ //  props destructuring
+  // let {name,details,paraDetail} = props;
+  return(
+    <>
+    
+     <img src={imgSource} alt=""/>
+     <h1>{name}</h1>
+     <h6>{details}</h6>
+     <p>{paraDetail}</p>
+    
+    </>
+  );
+}
+
+
+
+ReactDOM.render(
+  <Book/> ,
+   document.getElementById('root')
+ );
+ 
+ 
+ ====================================================================================================
+
+
+ ====================================================================================================
+15. Key Prop and Spread Operator
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'; 
+
+const books = [
+{
+  name: 'Name-1',
+  details: 'Detail-1',
+  paraDetail:'paragraph-1'
+},
+
+{
+  name: 'Name-2',
+  details: 'Detail-2',
+  paraDetail:'paragraph-2'
+},
+
+{
+  name: 'Name-3',
+  details: 'Detail-3',
+  paraDetail:'paragraph-3'
+}
+]
+
+
+
+function Book(){
+  return(
+    <>
+    {books.map((book,index)=>{
+    //  let {name,details,paraDetail} = book; 
+      return(
+        <>        
+        <BookData key={index} {...book} />
+        </>
+      );
+    })
+    }
+    
+    </>
+  );
+}
+
+function BookData({name,details,paraDetail}){
+ const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
+ //  props destructuring
+  // let {name,details,paraDetail} = props;
+  return(
+    <>
+    
+     <img src={imgSource} alt=""/>
+     <h1>{name}</h1>
+     <h6>{details}</h6>
+     <p>{paraDetail}</p>
+    
+    </>
+  );
+}
+
+
+
+ReactDOM.render(
+  <Book/> ,
+   document.getElementById('root')
+ );
+  ====================================================================================================
+
+
+
+
+
+
+====================================================================================================
+16. Event Basics
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css'; 
+
+const books = [
+{
+  name: 'Name-1',
+  details: 'Detail-1',
+  paraDetail:'paragraph-1'
+},
+
+{
+  name: 'Name-2',
+  details: 'Detail-2',
+  paraDetail:'paragraph-2'
+},
+
+{
+  name: 'Name-3',
+  details: 'Detail-3',
+  paraDetail:'paragraph-3'
+}
+]
+
+
+
+function Book(){
+  return(
+    <>
+    {books.map((book,index)=>{
+    //  let {name,details,paraDetail} = book; 
+      return(
+        <>        
+        <BookData key={index} {...book} />
+        </>
+      );
+    })
+    }
+    
+    </>
+  );
+}
+
+function BookData({name,details,paraDetail}){
+ const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
+ //  props destructuring
+  // let {name,details,paraDetail} = props;
+  
+  const clickFunction =  () => {
+      alert(details);
+  }
+  const complexFunction = (paraDetail) => {
+      console.log(paraDetail);
+  }
+
+  const eventHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+  }
+
+  return(
+    <>
+     <img src={imgSource} alt=""/>
+     <h1 onClick={()=>{console.log(name)}}>{name}</h1>
+     <h6 onClick={clickFunction}>{details}</h6>
+     <p onClick={()=> complexFunction(paraDetail)}>{paraDetail}</p>
+     <h2 onClick={eventHandler}>this is heading 2</h2>
+    
+    </>
+  );
+}
+
+
+
+ReactDOM.render(
+  <Book/> ,
+   document.getElementById('root')
+ );
+
+  ====================================================================================================
+ 
+
+
+====================================================================================================
+17. Import and Export Statements
+
+
+====================================================================================================
+ 
+ 
