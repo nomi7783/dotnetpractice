@@ -33,6 +33,8 @@ function Book(){
   );
 }
 
+
+
 function BookData(props){
   console.log(props);
   // const name= "Roshan Digital Account";
@@ -105,6 +107,7 @@ function Book(){
   );
 }
 
+
 function BookData({name,details,paraDetail,children}){
  const imgSource = "https://www.ubldigital.com/Portals/_default/skins/ubldigital/NewHome/imgs/rda-new-banner/rda-new-logo.png";
  //  props destructuring
@@ -157,6 +160,7 @@ const books = [
 ]
 
 const name =['noman' , 'salman' ,'arman'];
+
 const newName = name.map((name)=>{
   return(
     <h1>{name}</h1>
